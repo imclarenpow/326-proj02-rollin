@@ -4,6 +4,16 @@ On each turn you roll one more die and can then exchange it (if you wish) for an
 your current dice. Your objective is to form two sets of three dice as quickly as possible
 where a set consists either of three dice showing the same number, e.g., 444, or three
 dice in sequence, e.g., 123 or 345.
+## On Paper Plan
+> Have check to break when two conditions are met, Remove numbers from being checked once they are found to meet one condition.
+1. Check if already complete (not including 7th die)
+2. Check for incremental set
+3. Check for identical set
+4. Check for incremental 2 numbers by one or two increments
+    - Prefer increments that do not search for one number (5,6) (1,2) (or two increment difference)
+5. Check for identical 2 numbers
+6. Add 1 to turn counter
+7. Override first number that does not match the above.  
 ## Task
 You must provide a class that extends the abstract class ```Rollin.java```. Please give
 your class a distinctive (but polite) name associated with your group. Comments in
@@ -24,5 +34,3 @@ Excellence criteria include optimal, or near optimal strategies, or extensions t
 2.1, 2.2, 2.6, 2.9, 3.5, 3.6, 4.1, 4.3, 4.4.
 (Group)
 
- Tristan test commit :)
-cayden test commit
