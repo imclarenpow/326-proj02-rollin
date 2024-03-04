@@ -9,8 +9,7 @@ dice in sequence, e.g., 123 or 345.
 1. Check if already complete (not including 7th die)
 2. Check for incremental set
 3. Check for identical set
-4. Check for incremental 2 numbers by one or two increments
-    - Prefer increments that do not search for one number (5,6) (1,2) (or two increment difference)
+4. Check for 2,3 3,4 4,5 then check for all the other incremental numbers of 1 or two.
 5. Check for identical 2 numbers
 6. Add 1 to turn counter
 7. Override first number that does not match the above.  
@@ -32,9 +31,4 @@ Merit criteria include well-structured and readable code, and a strategy that wo
 Excellence criteria include optimal, or near optimal strategies, or extensions to the program.
 ## Objectives
 2.1, 2.2, 2.6, 2.9, 3.5, 3.6, 4.1, 4.3, 4.4.
-<<<<<<< HEAD
 (Group)
-
-=======
-(Group)
->>>>>>> 818f8e1f3d0d16fcc31224f5c4ce07556de0e146
