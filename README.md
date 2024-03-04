@@ -23,6 +23,3 @@ Excellence criteria include optimal, or near optimal strategies, or extensions t
 ## Objectives
 2.1, 2.2, 2.6, 2.9, 3.5, 3.6, 4.1, 4.3, 4.4.
 (Group)
-
- Tristan test commit :)
-cayden test commit
