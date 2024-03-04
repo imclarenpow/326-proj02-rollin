@@ -6,13 +6,12 @@ where a set consists either of three dice showing the same number, e.g., 444, or
 dice in sequence, e.g., 123 or 345.
 ## On Paper Plan
 > Have check to break when two conditions are met, Remove numbers from being checked once they are found to meet one condition.
-1. Check if already complete (not including 7th die)
-2. Check for incremental set
-3. Check for identical set
-4. Check for 2,3 3,4 4,5 then check for all the other incremental numbers of 1 or two.
-5. Check for identical 2 numbers
-6. Add 1 to turn counter
-7. Override first number that does not match the above.  
+1. Check if already complete (not including 7th die).
+2. Check for incremental set and identical set of 3.
+3. Check for 2,3 3,4 4,5.
+4. Check for identical 2 numbers and check for all the other incremental numbers of 1 or 2 increments.
+5. Add 1 to turn counter.
+6. Override first number that does not match any of the checked conditions above.  
 ## Task
 You must provide a class that extends the abstract class ```Rollin.java```. Please give
 your class a distinctive (but polite) name associated with your group. Comments in
