@@ -32,5 +32,9 @@ Merit criteria include well-structured and readable code, and a strategy that wo
 Excellence criteria include optimal, or near optimal strategies, or extensions to the program.
 ## Objectives
 2.1, 2.2, 2.6, 2.9, 3.5, 3.6, 4.1, 4.3, 4.4.
+<<<<<<< HEAD
 (Group)
 
+=======
+(Group)
+>>>>>>> 818f8e1f3d0d16fcc31224f5c4ce07556de0e146
