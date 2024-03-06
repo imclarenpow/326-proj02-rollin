@@ -22,21 +22,27 @@ public class PowisTestImplementation extends Rollin{
         dieCheck[i] = dice[i-1];
       }
       // main checking loop
-
+        // add to list
+        for(int i=0; i<dieCheck.length; i++){
+            checker[dieCheck[i]-1].add(dieCheck[i]);
+        }
         if(stepTwo()){
-            //System.out.println("Identical Or Incremental Sets Found");
-        }else if(stepThree()){
-            //System.out.println("2,3 3,4 or 4,5 found");
-        }else if(stepFour()){
-            //System.out.println("Identical 2 or Incremental Found");
+            }else if(stepThree()){
+            }else if(stepFour()){
         }
         // value to find
         int temp = 0;
+        boolean flag = true;
         for(int i=0; i<checker.length; i++){
-            if(checker[i].size()!=0){
-                temp = checker[i].get(checker[i].size()-1);
+           if(checker[i].size()>0){
+                temp = checker[i].get(0);
+                flag = false;
                 break;
-            }
+           }
+        }
+        // if there is nothing in the checker, check partials and choose first
+        if(flag){
+            temp = partials[0][0];
         }
         for(int i=0; i< dice.length; i++){
             if(temp==dice[i]){
@@ -49,9 +55,31 @@ public class PowisTestImplementation extends Rollin{
     }
     // 2. Check for identical sets of 3 and incremental
     public boolean stepTwo(){
-        // add to list
-        for(int i=0; i<dieCheck.length; i++){
-            checker[dieCheck[i]-1].add(dieCheck[i]);
+        // check for 3 incremental numbers
+        int increments = 0;
+        for(int i=0; i<checker.length-1; i++){
+            // if found incremental numbers add to token
+            if(checker[i].size()>0 && checker[i+1].size()>0){
+                increments++;
+            // else reset
+            }else{
+                increments = 0;
+            }
+            // also check that i>1 in case it tries to find an index of -1.
+            if(increments==2 && i>1){
+                // TODO - make this less lazy
+                if(sets[0][0]==0){
+                    for(int j=0; j<sets[0].length-1; j++){
+                        sets[0][j] = getCheckVal(i-j);
+                    }
+                    break;
+                }else{
+                    for(int j=0; j<sets[1].length-1; j++){
+                        sets[1][j] = getCheckVal(i-j);
+                    }
+                    return true;
+                }
+            }
         }
         // check if there are three of any numbers
         for(int i=0; i<checker.length; i++){
@@ -63,45 +91,15 @@ public class PowisTestImplementation extends Rollin{
                     // loop through set and add identical values
                     for(int j=0; j<sets[0].length; j++){
                         // add and delete value from list
-                        sets[0][j] = checker[i].get(checker[i].size()-1);
-                        checker[i].remove(checker[i].size()-1);
+                        sets[0][j] = getCheckVal(i);
                     }
+                    break;
                 // else if first is taken
                 } else {
                     // loop through set and add identical values
                     for(int j=0; j<sets[0].length; j++){
                         // add and delete value from list
-                        sets[1][j] = checker[i].get(checker[i].size()-1);
-                        checker[i].remove(checker[i].size()-1);
-                    }
-                    // this is the final set, so break methods.
-                    return true;
-                }
-            }
-        }
-        // check for 3 incremental numbers
-        int increments = 0;
-        
-        for(int i=0; i<checker.length-1; i++){
-            // if found incremental numbers add to token
-            if(checker[i].size()!=0 && checker[i+1].size()!=0){
-                increments++;
-            // else reset
-            }else{
-                increments = 0;
-            }
-            // also check that i>1 in case it tries to find an index of -1.
-            if(increments==2 && i>1){
-                // TODO - make this less lazy
-                if(sets[0][0]==0){
-                    for(int j=0; j<sets[0].length-1; j++){
-                        sets[0][j] = checker[i-j].get(checker[i-j].size()-1);
-                        checker[i-j].remove(checker[i-j].size()-1);
-                    }
-                }else{
-                    for(int j=0; j<sets[1].length-1; j++){
-                        sets[1][j] = checker[i-j].get(checker[i-j].size()-1);
-                        checker[i-j].remove(checker[i-j].size()-1);
+                        sets[1][j] = getCheckVal(i);
                     }
                     return true;
                 }
@@ -122,6 +120,7 @@ public class PowisTestImplementation extends Rollin{
                         partials[0][j] = checker[i+j].get(checker[i+j].size()-1);
                         checker[i+j].remove(checker[i+j].size()-1);
                     }
+                    break;
                 }else{
                     for(int j=0; j<2; j++){
                         partials[1][j] = checker[i+j].get(checker[i+j].size()-1);
@@ -143,6 +142,7 @@ public class PowisTestImplementation extends Rollin{
                         partials[0][j] = checker[i].get(checker[i].size()-1);
                         checker[i].remove(checker[i].size()-1);
                     }
+                    break;
                 }else{
                     for(int j=0; j<partials[0].length; j++){
                         partials[1][j] = checker[i].get(checker[i].size()-1);
@@ -156,41 +156,37 @@ public class PowisTestImplementation extends Rollin{
         // TODO - this runs over some of the same numbers that stepThree() does, maybe change this later?       
         for(int i=0; i<checker.length-1; i++){
             // check for one increment difference
-            // TODO - This could also be made less lazily
             if(i<checker.length-2){
-                if(checker[i].size()!=0 && checker[i+2].size()!=0){
-                    if(sets[0][0]==0){
-                        partials[0][0] = checker[i].get(checker[i].size()-1);
-                        partials[0][1] = checker[i+2].get(checker[i+2].size()-1);
-                        checker[i].remove(checker[i].size()-1);
-                        checker[i+2].remove(checker[i+2].size()-1);
-                    }else{
-                        partials[1][0] = checker[i].get(checker[i].size()-1);
-                        partials[1][1] = checker[i+2].get(checker[i+2].size()-1);
-                        checker[i].remove(checker[i].size()-1);
-                        checker[i+2].remove(checker[i+2].size()-1);
-                        return true;
+                if(checker[i].size()>0 && checker[i+2].size()>0){
+                    for(int j=0; j<partials.length; j++){
+                        if(sets[j][0]==0){
+                            partials[j][0] = getCheckVal(i);
+                            partials[j][1] = getCheckVal(i+2);
+                            break;
+                        }
                     }
                 }
             }
             // if found incremental numbers add to token
             if(checker[i].size()!=0 && checker[i+1].size()!=0){
-                // TODO - make this less lazy
-                if(sets[0][0]==0){
-                    partials[0][0] = checker[i].get(checker[i].size()-1);
-                    partials[0][1] = checker[i+1].get(checker[i+1].size()-1);
-                    checker[i].remove(checker[i].size()-1);
-                    checker[i+1].remove(checker[i+1].size()-1);
-                }else{
-                    partials[1][0] = checker[i].get(checker[i].size()-1);
-                    partials[1][1] = checker[i+1].get(checker[i+1].size()-1);
-                    checker[i].remove(checker[i].size()-1);
-                    checker[i+1].remove(checker[i+1].size()-1);
-                    return true;
+                // this is a short nested loop
+                for(int j=0; j<partials.length; j++){
+                    if(sets[j][0]==0){
+                        partials[j][0] = getCheckVal(i);
+                        partials[j][1] = getCheckVal(i+1);
+                        return true;
+                    }
                 }
             }
         }
         return false;
+    }
+    
+    public int getCheckVal(int index){
+        int value = 0;
+        value = checker[index].get(checker[index].size()-1);
+        checker[index].remove(checker[index].size()-1);
+        return value;
     }
 
     // initialise list
