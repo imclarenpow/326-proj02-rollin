@@ -24,11 +24,11 @@ public class PowisTestImplementation extends Rollin{
       // main checking loop
 
         if(stepTwo()){
-            System.out.println("Identical Or Incremental Sets Found");
+            //System.out.println("Identical Or Incremental Sets Found");
         }else if(stepThree()){
-            System.out.println("2,3 3,4 or 4,5 found");
+            //System.out.println("2,3 3,4 or 4,5 found");
         }else if(stepFour()){
-            System.out.println("Identical 2 or Incremental Found");
+            //System.out.println("Identical 2 or Incremental Found");
         }
         // value to find
         int temp = 0;
@@ -64,7 +64,7 @@ public class PowisTestImplementation extends Rollin{
                     for(int j=0; j<sets[0].length; j++){
                         // add and delete value from list
                         sets[0][j] = checker[i].get(checker[i].size()-1);
-                        checker[i].get(checker[i].size()-1);
+                        checker[i].remove(checker[i].size()-1);
                     }
                 // else if first is taken
                 } else {
@@ -72,7 +72,7 @@ public class PowisTestImplementation extends Rollin{
                     for(int j=0; j<sets[0].length; j++){
                         // add and delete value from list
                         sets[1][j] = checker[i].get(checker[i].size()-1);
-                        checker[i].get(checker[i].size()-1);
+                        checker[i].remove(checker[i].size()-1);
                     }
                     // this is the final set, so break methods.
                     return true;
@@ -141,12 +141,12 @@ public class PowisTestImplementation extends Rollin{
                 if(partials[0][0]==0){
                     for(int j=0; j<partials[0].length; j++){
                         partials[0][j] = checker[i].get(checker[i].size()-1);
-                        checker[i].get(checker[i].size()-1);
+                        checker[i].remove(checker[i].size()-1);
                     }
                 }else{
                     for(int j=0; j<partials[0].length; j++){
                         partials[1][j] = checker[i].get(checker[i].size()-1);
-                        checker[i].get(checker[i].size()-1);
+                        checker[i].remove(checker[i].size()-1);
                     }
                     return true;
                 }
