@@ -177,15 +177,15 @@ public class PowisTestImplementation extends Rollin{
             if(checker[i].size()!=0 && checker[i+1].size()!=0){
                 // TODO - make this less lazy
                 if(sets[0][0]==0){
-                    for(int j=0; j<sets[0].length; j++){
-                        partials[0][j] = checker[i-j].get(checker[i-j].size()-1);
-                        checker[i-j].remove(checker[i-j].size()-1);
-                    }
+                    partials[0][0] = checker[i].get(checker[i].size()-1);
+                    partials[0][1] = checker[i+1].get(checker[i+1].size()-1);
+                    checker[i].remove(checker[i].size()-1);
+                    checker[i+1].remove(checker[i+1].size()-1);
                 }else{
-                    for(int j=0; j<sets[1].length; j++){
-                        partials[1][j] = checker[i-j].get(checker[i-j].size()-1);
-                        checker[i-j].remove(checker[i-j].size()-1);
-                    }
+                    partials[1][0] = checker[i].get(checker[i].size()-1);
+                    partials[1][1] = checker[i+1].get(checker[i+1].size()-1);
+                    checker[i].remove(checker[i].size()-1);
+                    checker[i+1].remove(checker[i+1].size()-1);
                     return true;
                 }
             }

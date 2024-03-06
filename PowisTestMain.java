@@ -3,6 +3,9 @@ public class PowisTestMain {
     static Random R = new Random();
     // code snippets pinched from Test.java
     public static void main(String[] args){
+        runDie();
+    }
+    public static void runDie(){
         Rollin powis = new PowisTestImplementation();
         int[] d = new int[6];
         for(int i = 0; i < d.length; i++){
