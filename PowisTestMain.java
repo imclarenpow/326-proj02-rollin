@@ -13,7 +13,7 @@ public class PowisTestMain {
         System.out.println("Roll: " + roll);
         System.out.println("PowisTest changes: " + powis.handleRoll(roll, d));
         System.out.println("Running random until complete...");
-        int turns = 0;
+        int turns = -1;
         while (!Rollin.isComplete(d)) {
             roll = R.nextInt(6) + 1;
             System.out.println("Roll: " + roll);
