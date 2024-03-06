@@ -6,6 +6,7 @@ public class PowisTestImplementation extends Rollin{
     private int[] dieCheck = new int[7];
     private int turns = 0;
     // TODO figure this out
+    @SuppressWarnings("unchecked")
     private ArrayList<Integer>[] checker = new ArrayList[6];
     public PowisTestImplementation(){
         initChecker();
