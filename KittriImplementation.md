@@ -1,0 +1,67 @@
+ 
+ # Algorithm for Dice Game
+ This algorithm may not be optimal yet, will also need to compare to PowisTestImplementation to see which works better. I have checked over and coded everything up to the "There **is** one set" branch, but have not yet checked and coded the "There **isn't** one set" branch. Everything I have looked over so far seems to be as optimal as I can think of.
+
+ ## Algorithm:
+ 
+ - Check for a complete game
+    - If there is, return -1;
+    - If there isn't, continue;
+ - Check if the roll will complete the game
+    - If it does, return the index that will complete it;
+    - If it doesn't, continue;
+ - Check if there is already one set
+    - There **is** one set **(Has been checked, but may still be incomplete)**:
+        - Check if the remaining dice have a pair
+            - If there is a pair, check if abs(roll - pairValue) < abs(nonPairValue - pairValue)
+                - If true, replace nonPairValue with roll
+                - If false, return -1;
+            - If there is not a pair try to create a pair with the roll
+                - Check if you can create a pair
+                    - If yes, check if either of the other 2 numbers is +- 1 from the roll
+                        - If yes, swap the roll for the remaining 3rd number
+                        - If no, check if either of the other 2 numbers is +- 2 from the roll
+                            - If yes, swap the roll for the remaining 3rd number
+                            - If no, return -1;
+                - If you can't create a pair, check if the roll is +- 1 from a dice
+                    - If yes, replace a dice that is not +- 1 from the roll
+                    - If it isn't, check if the roll is +- 2 from a dice
+                        - If yes, replace any dice that is not +- 2 from the roll
+                        - If no, return -1;        
+    - There **isn't** one set **(NEEDS CHECKING)**:
+        - Check if the roll will complete a set
+            - If no, check for a pairs
+                - If there are pairs then check if the roll is +- 1 or +- 2 from any pair, then add the roll anywhere other than the pair
+                - If no pair, check if the roll will complete a pair
+                    - If yes, check if any of the other 5 dice are +- 1 from the roll value
+                        - If yes, don't replace the +- 1, replace any of the other 4 dice
+                        - If no, check if any of the other 5 dice are +- 2 from the roll value
+                            - If yes, don't replace the +- 2, replace any of the other 4 dice
+                            - If no, replace any of the other 5 dice
+                    - If no, return -1;
+            - If yes, check for a pair
+                - If there is a pair, check if there are multiple pairs
+                    - If there are multiple pairs, check each pair for a +- 1
+                        - If any pair has a +- 1, group that pair with that +- 1 in a separate array
+                            - Check the rest of the pairs for a +- 2 (if there are any pairs left) and group them with their +- 2 if they exist
+                        - If there aren't, check the single pair for a +- 1 and group those 3 together separately
+                            - If no +- 1, check for a +- 2 and group
+                                - If no +- 2 then place the roll in the remaining 4 dice to complete the set if possible
+                                    - If not, replace one of the pair dice
+                                - If there is a +- 2 then check if the roll can be placed anywhere in the remaining 3 dice to complete a set
+                                    - If not, replace the +- 2 dice if possible
+                                        - If not, replace one of the pair dice
+                            - If there is +- 1 then check if the roll can be placed anywhere in the remaining 3 dice to complete a set
+                                - If not, replace the +- 1 dice if possible
+                                    - If not, replace one of the pair dice 
+                - If there is one pair: check for a +- 1 from the pair
+                    - If there is, check the remaining 3 to see if the roll can complete a set from them
+                        - If not, replace the +- 1 to form a set if possible
+                            - If not, replace one of the pair dice to complete the set
+                    - If there isn't, check for a +- 2
+                        - If there is, check the remaining 3 to see if the roll can complete a set from them
+                            - If not, replace the +- 2 to form a set if possible
+                                - If not, replace one of the pair dice to complete the set
+                        - If there isn't, check the remaining 4 to see if the roll can complete a set from them
+                            - If yes, complete the set
+                            - If no, replace one of the pair dice to complete the set
