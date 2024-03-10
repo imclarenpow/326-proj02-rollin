@@ -6,7 +6,7 @@ public class KittrTestMain {
 
     // code snippets pinched from Test.java
     public static void main(String[] args) {
-        runDie();
+        averageTurnsPerGame();
     }
 
     public static void runDie() {
@@ -21,6 +21,7 @@ public class KittrTestMain {
         int toChange = kittr.handleRoll(roll, d);
         if (toChange != -1) {
             System.out.println("KittrTest changes: " + toChange);
+            d[toChange] = roll;
         } else {
             System.out.println("KittrTest does not change");
         }
@@ -42,5 +43,34 @@ public class KittrTestMain {
             turns++;
         }
         System.out.println(turns + " turns taken");
+    }
+
+    public static void averageTurnsPerGame() {
+        Rollin kittr = new KittrTestImplementation();
+        int[] d = new int[6];
+        int totalTurns = 0;
+        for (int j = 0; j < 10000; j++) {
+            for (int i = 0; i < d.length; i++) {
+                d[i] = R.nextInt(6) + 1;
+            }
+            int roll = R.nextInt(6) + 1;
+            int toChange = kittr.handleRoll(roll, d);
+            if (toChange != -1) {
+                d[toChange] = roll;
+            }
+            int turns = 1;
+            while (!Rollin.isComplete(d)) {
+                roll = R.nextInt(6) + 1;
+                toChange = kittr.handleRoll(roll, d);
+                if (toChange == -1) {
+                    turns++;
+                    continue;
+                }
+                d[toChange] = roll;
+                turns++;
+            }
+            totalTurns += turns;
+        }
+        System.out.println("Average turns: " + ((float) totalTurns / 10000));
     }
 }
