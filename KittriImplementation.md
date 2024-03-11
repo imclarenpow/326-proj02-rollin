@@ -28,7 +28,7 @@
                     - If it isn't, check if the roll is +- 2 from a dice
                         - If yes, replace any dice that is not +- 2 from the roll
                         - If no, return -1;        
-    - There **isn't** one set **(NEEDS CHECKING)**:
+    - There **isn't** one set:
         - Check if the roll will complete a set
             - If no, check for a pair
                 - If there are pairs then check if the roll is +- 1 or +- 2 from any pair, then add the roll anywhere other than the pair
@@ -51,4 +51,4 @@
                         - If no, check if any of the other 5 dice are +- 2 from the roll value
                             - If yes, don't replace the +- 2, replace any of the other 4 dice
                             - If no, replace any of the other 5 dice
-                    - If no, return -1;
+                    - If no, complete the set anywhere
