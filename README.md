@@ -1,3 +1,4 @@
+Tristan Kitto, Isaac Powell, Cayden Scott and Rochelle Cole
 # Rollin
 Here’s a simple game using ordinary six sided dice. You have six dice, initially random.
 On each turn you roll one more die and can then exchange it (if you wish) for any one of
@@ -31,3 +32,7 @@ Excellence criteria include optimal, or near optimal strategies, or extensions t
 ## Objectives
 2.1, 2.2, 2.6, 2.9, 3.5, 3.6, 4.1, 4.3, 4.4.
 (Group)
+
+## How to run
+Run CritTestMain.java in your terminal
+

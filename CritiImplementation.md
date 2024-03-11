@@ -1,6 +1,6 @@
- 
+Tristan Kitto, Isaac Powell, Cayden Scott and Rochelle Cole
  # Algorithm for Dice Game
- Algorithm has been (hopefully) completely implemented in `KittrTestImplementation.java`. Testing done in `KittrTestMain.java` provides an average of approximately 3.2 turns per game averaged over 10,000 games.
+ Algorithm has been (hopefully) completely implemented in `CritRoller.java`. Testing done in `CritTestMain.java` provides an average of approximately 3.2 turns per game averaged over 10,000 games.
 
  ## Algorithm:
  
@@ -52,3 +52,4 @@
                             - If yes, don't replace the +- 2, replace any of the other 4 dice
                             - If no, replace any of the other 5 dice
                     - If no, complete the set anywhere
+
