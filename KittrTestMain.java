@@ -54,22 +54,13 @@ public class KittrTestMain {
             for (int i = 0; i < d.length; i++) {
                 d[i] = R.nextInt(6) + 1;
             }
-            int roll = R.nextInt(6) + 1;
-            int toChange = kittr.handleRoll(roll, d);
-            if (toChange == 7) {
-                continue;
-            } else if (toChange != -1) {
-                d[toChange] = roll;
-            }
-            int turns = 1;
+            int turns = 0;
             while (!Rollin.isComplete(d)) {
-                roll = R.nextInt(6) + 1;
-                toChange = kittr.handleRoll(roll, d);
-                if (toChange == -1) {
-                    turns++;
-                    continue;
+                int roll = R.nextInt(6) + 1;
+                int toChange = kittr.handleRoll(roll, d);
+                if (toChange != -1) {
+                    d[toChange] = roll;
                 }
-                d[toChange] = roll;
                 turns++;
             }
             totalTurns += turns;
