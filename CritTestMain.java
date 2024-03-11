@@ -1,6 +1,8 @@
 import java.util.Random;
+
 /**
- * A class to test Rollin' implementation and find out how many turns on average it takes.
+ * A class to test Rollin' implementation and find out how many turns on average
+ * it takes.
  *
  * @author Tristan Kitto, Isaac Powell, Cayden Scott and Rochelle Cole
  */
@@ -11,8 +13,9 @@ public class CritTestMain {
     // Code snippets pinched from Test.java
     public static void main(String[] args) {
         averageTurnsPerGame();
-        //runDie();
+        // runDie();
     }
+
     /**
      * This is a method that displays the initial roll, what the roll is,
      * how many changes were made, Runs random until complete.
@@ -52,31 +55,26 @@ public class CritTestMain {
         }
         System.out.println(turns + " turns taken");
     }
+
     /**
-     * This is a method that records and calculates the average number of turns per game
+     * This is a method that records and calculates the average number of turns per
+     * game
      */
     public static void averageTurnsPerGame() {
         Rollin Crit = new CritRoller();
         int[] d = new int[6];
         int totalTurns = 0;
         for (int j = 0; j < 10000; j++) {
+            int turns = 0;
             for (int i = 0; i < d.length; i++) {
                 d[i] = R.nextInt(6) + 1;
             }
-            int roll = R.nextInt(6) + 1;
-            int toChange = Crit.handleRoll(roll, d);
-            if (toChange != -1) {
-                d[toChange] = roll;
-            }
-            int turns = 1;
             while (!Rollin.isComplete(d)) {
-                roll = R.nextInt(6) + 1;
-                toChange = Crit.handleRoll(roll, d);
-                if (toChange == -1) {
-                    turns++;
-                    continue;
+                int roll = R.nextInt(6) + 1;
+                int toChange = Crit.handleRoll(roll, d);
+                if (toChange != -1) {
+                    d[toChange] = roll;
                 }
-                d[toChange] = roll;
                 turns++;
             }
             totalTurns += turns;
